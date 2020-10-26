@@ -1,11 +1,12 @@
 //JS Random Quote Generator Script
 
-//Set the 5 quotes with fields containing the quote, author, year of creation (if known) and citation (if known)
+//This sets the 5 quotes with fields and contains the quote, year of creation (if known) and citation (if known)
 
 let quotes = [{
         quote: `Spread love everywhere you go. Let no one ever come to you without leaving happier.`,
         source: `Mother Teresa`,
         citation: `https://www.brainyquote.com/quotes/mother_teresa_133195`
+
 
     },
     {
@@ -17,7 +18,8 @@ let quotes = [{
         quote: `You will face many defeats in life, but never let yourself be defeated.`,
         source: `Maya Angelou`,
         year: `1993`,
-        citation: `https://www.goalcast.com/2017/04/03/maya-angelou-quotes-to-inspire-your-life/`
+        citation: `https://www.goalcast.com/2017/04/03/maya-angelou-quotes-to-inspire-your-life/`,
+        tag: `cultural, leadership`
 
 
     },
@@ -26,6 +28,7 @@ let quotes = [{
         source: `Thomas A. Edison`,
         year: `1920`,
         citation: `https://www.goalcast.com/2017/04/03/maya-angelou-quotes-to-inspire-your-life/`,
+        tags: `inspiring, historical, motivation, politics`
 
     },
     {
@@ -39,7 +42,7 @@ let quotes = [{
 ];
 
 
-//Create the getRandomQuote() function. This will select a numerical value at random, 
+//Here, the getRandomQuote() function selects a numerical value at random, 
 //which cannot be higher than the amount of objects in the "quotes" array.
 //Using this random number, the function will then return a random "quotes" object.
 
@@ -51,39 +54,42 @@ function getRandomQuote() {
 };
 //console.log(getRandomQuote());
 
+// Setting the printQuote function, which calls getRandomQuote(), 
+// The function sets the variables for year, citation, quote, by, and category, to create the template literal,
+// which then prints the quote and it 's contents to index.html.
 
 function printQuote() {
-    // Setting the printQuote function, which calls getRandomQuote(), 
-    // 1. Create a variable that calls the getRandomQuote() function
-    var rQuote = getRandomQuote();
-    // The function sets the variables for year, citation, quote, by, and category, to create the template literal,
-    // which then prints the quote and it 's contents to index.html.
 
-    // 2. Create a variable that initiates your HTML string with 
+    // This variable that calls the getRandomQuote() function
+    const rQuote = getRandomQuote();
+
+
+    // This variable initiates the HTML string with 
     // the first two <p></p> elements, their classNames, 
-    // and the quote and source properties, but leave off 
-    // the second closing ` < /p>` tag for now
-    var htmlString = `<p class ="quote">${rQuote.quote}</p> <p class="source">${rQuote.source} `;
+    // and the quote and source properties. 
 
-    // 3. Use an if statement to check if the citation property 
-    // exists, and if it does, concatenate a <span></span> 
-    // element, appropriate className, and citation property 
-    // to the HTML string
+    let htmlString = `<p class ="quote">${rQuote.quote}</p> <p class="source">${rQuote.source} `;
+
+    //Using an if statement to check if the citation property exits. 
+    //if it does, concatenate a <span></span> element, appropriate className, 
+    //and citation property to the HTML string
+
     if (rQuote.citation) {
 
         htmlString += `<span class="citation">${rQuote.citation}</span>`
     }
-    // 4. Use an if statement to check of the year property exists, 
-    // and if it does, concatenate a <span></span> element, 
-    // appropriate className, and year property to the HTML 
-    //string
+
+    // Using an if statement to check of the year property exists, 
 
     if (rQuote.year) {
         htmlString += `<span class="citation">${rQuote.year} </span>`
     }
 
-    // 5. After the two if statements, concatenate the closing </p> 
-    // tag to the HTML string
+    if (rQuote.tags) {
+        htmlString += `<span class="citation">${rQuote.tags} </span>`
+    }
+
+    // concatenate the closing </p> tag to the HTML string
 
     htmlString += `</p>`
 
@@ -91,16 +97,16 @@ function printQuote() {
 }
 printQuote();
 
-//setting time refresh every 10 seconds 
+//this sets the time refresh every 10 seconds 
 setTimeout(function() {
     location.reload();
 }, 10000);
 
 
-//change background color after every refresh 
+//this changes the background color after every refresh 
 function random_color() {
-    var color = `#`;
-    var letters = [`de9f0c`,
+    let color = `#`;
+    let letters = [`de9f0c`,
         `0e7e64`,
         `ca0eb4`,
         `7b8c15`,
@@ -108,7 +114,7 @@ function random_color() {
         '27517f'
     ];
     color += letters[Math.floor(Math.random() * letters.length)];
-    document.getElementById(`change`).style.background = color;
+    document.getElementById(`change`, `load-quote`).style.background = color;
 
 
 }
