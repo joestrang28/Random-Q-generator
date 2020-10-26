@@ -19,7 +19,7 @@ let quotes = [{
         source: `Maya Angelou`,
         year: `1993`,
         citation: `https://www.goalcast.com/2017/04/03/maya-angelou-quotes-to-inspire-your-life/`,
-        tag: `cultural, leadership`
+        tags: `cultural, leadership`
 
 
     },
